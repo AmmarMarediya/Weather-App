@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #40a87f;
+    font-family: "Nata Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.w-card {
+    background: rgb(225, 225, 225);
+    padding: 10px;
+    /* border: 2px solid black; */
+    margin: 50px auto;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 5px 5px 10px rgb(52, 52, 52);
+    gap: 10px 0;
+}
+
+.w-card h2 {
+    color: rgb(149, 117, 255);
+}
+
+.input-box{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap:5px;
+    width: 100%;
+    align-items: center;
+    
+}
+#btn-w{
+border: none;
+width: 100px;
+border-radius: 14px;
+background: rgb(64, 121, 214);
+margin: 10px auto;
+padding: 10px;
+color: white;
+font-weight: bold;
+}
+
+.flex{
+    display:flex;
+    gap: 5px;
+
+}
+input[type="text"]{
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+    width: 50%;
+    background: #f1f1f1;
+    
+}
+
+.weather-display{
+    min-width: 20vw;
+    background: rgb(255, 224, 224);
+    padding: 10px;
+    border-radius: 8px;;
+}
+
+
+@media screen and (max-width: 484px){
+    .w-card {
+    width: 90%;
+}
+
+}
