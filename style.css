@@ -6,7 +6,7 @@
 }
 
 body {
-    background: #40a87f;
+    background: #c5e3ff80;
     font-family: "Nata Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: 700;
@@ -14,7 +14,7 @@ body {
 }
 
 .w-card {
-    background: rgb(225, 225, 225);
+    background: #a3d3ff51;
     padding: 10px;
     /* border: 2px solid black; */
     margin: 50px auto;
@@ -29,7 +29,7 @@ body {
 }
 
 .w-card h2 {
-    color: rgb(149, 117, 255);
+    color: #0084ffe2;
 }
 
 .input-box{
@@ -45,11 +45,12 @@ body {
 border: none;
 width: 100px;
 border-radius: 14px;
-background: rgb(64, 121, 214);
+background: #399fffef;
 margin: 10px auto;
 padding: 10px;
 color: white;
 font-weight: bold;
+cursor: pointer;
 }
 
 .flex{
@@ -70,7 +71,7 @@ input[type="text"]{
 
 .weather-display{
     min-width: 20vw;
-    background: rgb(255, 224, 224);
+    background: #0084ff21;
     padding: 10px;
     border-radius: 8px;;
 }
