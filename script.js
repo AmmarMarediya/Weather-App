@@ -1,41 +1,56 @@
-  async function getCityWeather() {
-      let city = document.getElementById("city").value;
-      if (!city) {
-        alert("Please enter a city name");
-        return;
-      }
+let display = document.createElement("div");
 
-      try {
-        // 1. Geocoding API se lat/lon lo
-        let geoRes = await fetch(
-          `https://geocoding-api.open-meteo.com/v1/search?name=${city}`
-        );
-        let geoData = await geoRes.json();
+document.getElementById("btn").addEventListener("click", () => {
+    getcity()
+})
+async function getcity() {
 
-        if (!geoData.results || geoData.results.length === 0) {
-          document.getElementById("result").innerText = "City not found!";
-          return;
-        }
+    try {
 
-        let lat = geoData.results[0].latitude;
-        let lon = geoData.results[0].longitude;
+        let city = document.getElementById("city-input").value;
+        let op;
+        let geores = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}`)
+        let geodata = await geores.json();
+        document.querySelector("#city-option").innerHTML = "";
 
-        // 2. Weather API call
-        let weatherRes = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`
-        );
-        let weatherData = await weatherRes.json();
+        geodata.results.forEach(info => {
+            op = document.createElement("option");
+            op.value = `${info.latitude} ${info.longitude}`
 
-        // 3. Output show
-        let temp = weatherData.current_weather.temperature;
-        let wind = weatherData.current_weather.windspeed;
+            op.textContent = `${info.name}, ${info.admin2}, ${info.admin1}, ${info.country}`
+            document.querySelector("#city-option").appendChild(op);
 
-        document.getElementById("result").innerHTML =
-          `<b>${city}</b><br>Temperature: ${temp}°C <br>Wind Speed: ${wind} km/h`;
+        });
+        let select = document.getElementById("city-option");
+        let [lat, lon] = select.value.split(" ");
+        getWeather(lat, lon);
+        console.log("ok");
 
-      } catch (err) {
-        console.error(err);
-        document.getElementById("result").innerText = "Error fetching data.";
-      }
+
+    } catch (err) {
+        console.log(err);
     }
+}
+let select = document.getElementById("city-option");
+select.addEventListener("change", () => {
+    let [lat, lon] = select.value.split(" ");
+    getWeather(lat, lon)
+
+})
+async function getWeather(lat, lon) {
+    let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m`);
+    let data = await res.json();
+
+
+    let select = document.getElementById("city-option");
+    let city = select.options[select.selectedIndex].text;
+    
+    display.className = "weather-display";
+    display.innerHTML = `City: ${city}<br>Temp: ${data.current.temperature_2m}<br>Humidity: ${data.current.relative_humidity_2m}`;
+    document.body.appendChild(display);
+    console.log("Temp:", data.current.temperature_2m);
+    console.log("Humidity:", data.current.relative_humidity_2m);
+
+}
+
 

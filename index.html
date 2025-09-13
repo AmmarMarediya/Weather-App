@@ -1,29 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="w-card">
-        <h2>Weather App</h2>
-        <div class="input-box">
+    <form action="">
+        <label for="city-input"></label>
+        <input type="text" id="city-input" placeholder="Enter city">
+        <label for="city-option">Select City:</label>
+        <select name="city-select" id="city-option">
+            
+        </select>
+        <button id="btn" type="button">Get weather</button>
+    </form>
 
-
-            <input type="text" id="city" name="city" placeholder="Enter city name">
-            <button onclick="getCityWeather()" id="btn-w">Get Weather</button>
-
-        </div>
-        <div class="weather-display">
-            <h4 style="text-align: center;">Weather Display</h2>
-                <div id="result"></div>
-        </div>
-    </div>
-    <script src="script.js"></script>
+   
+    <script src="weather.js"></script>
 </body>
-
 </html>
