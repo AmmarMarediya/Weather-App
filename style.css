@@ -15,6 +15,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 100vh;
 }
 
 form {
@@ -36,19 +37,19 @@ form h2 {
     color: #0084ffe2;
 }
 
-.input-box{
+#city-input{
     display:flex;
     flex-direction: column;
     flex-wrap: wrap;
     gap:5px;
-    width: 100%;
+    width: 60%;
     align-items: center;
     
 }
 #btn{
 border: none;
 width: 100px;
-border-radius: 14px;
+border-radius: 10px;
 background: #399fffef;
 margin: 10px auto;
 padding: 10px;
@@ -65,7 +66,7 @@ cursor: pointer;
 input[type="text"]{
     border: none;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 6px;
     outline: none;
     font-size: 16px;
     width: 50%;
@@ -83,8 +84,9 @@ input[type="text"]{
 #city-option{
     width: 50%;
     border-style: none;
-    border-radius: 12px;
+    border-radius: 5px;
     padding: 5px;
+    outline: none;
 } 
 
 @media screen and (max-width: 484px){
@@ -93,8 +95,6 @@ input[type="text"]{
 }
 #city-option{
     width: 90%;
-    border-style: none;
-    border-radius: 12px;
 }
 
 .weather-display{
@@ -102,5 +102,9 @@ input[type="text"]{
     padding: 10px;
     border-radius: 12px;
 
+}
+
+#city-input{
+    width: 90%;
 }
 }

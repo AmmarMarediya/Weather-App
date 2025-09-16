@@ -1,6 +1,6 @@
-let display = document.createElement("div");
-display.className = "weather-display";
-
+// let display = document.createElement("div");
+// display.className = "weather-display";
+let display = document.querySelector(".display");
 document.getElementById("btn").addEventListener("click", () => {
     getcity()
 })
@@ -13,12 +13,14 @@ async function getcity() {
         let city = document.getElementById("city-input").value.trim();
         if (!city) {
             display.textContent = "🔴Please enter city⚠️";
-            document.body.appendChild(display);
+            
+            setTimeout(() => {
+                display.textContent = "";
+            }, 1500);
 
             return;
         }
-        display.className = "";
-        display.textContent = "";
+       
         let op;
         let geores = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}`)
         let geodata = await geores.json();
@@ -26,7 +28,11 @@ async function getcity() {
        
 
         if (!geodata.results || geodata.results.length === 0) {
-            select.innerHTML = "<option>🥲City not found⚠️</option>"
+            select.innerHTML = "<option>🥲City Not Found⚠️</option>"
+            setTimeout(() => {
+                
+                select.innerHTML = "";
+            }, 1500);
             return;
 
         }
@@ -62,9 +68,9 @@ async function getWeather(lat, lon) {
     let select = document.getElementById("city-option");
     let city = select.options[select.selectedIndex].text;
 
-    display.className = "weather-display";
+    // display.className = "weather-display";
     display.innerHTML = `City: ${city}<br>Temp: 🌡️${data.current.temperature_2m}°C <br>Humidity: 💧${data.current.relative_humidity_2m}%`;
-    document.body.appendChild(display);
+    // document.body.appendChild(display);
 }
 
 
