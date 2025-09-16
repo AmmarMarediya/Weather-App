@@ -7,11 +7,26 @@ async function getcity() {
 
     try {
 
-        let city = document.getElementById("city-input").value;
+        let city = document.getElementById("city-input").value.trim();
+        if (!city) {
+            display.textContent = "🔴Please enter city⚠️";
+            document.body.appendChild(display);
+
+            return;
+        }
+        display.textContent = "";
         let op;
         let geores = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}`)
         let geodata = await geores.json();
-        document.querySelector("#city-option").innerHTML = "";
+
+        let select = document.getElementById("city-option");
+        select.innerHTML = "";
+
+        if (!geodata.results || geodata.results.length === 0) {
+            select.innerHTML = "<option>🥲City not found⚠️</option>"
+            return;
+
+        }
 
         geodata.results.forEach(info => {
             op = document.createElement("option");
@@ -21,22 +36,21 @@ async function getcity() {
             document.querySelector("#city-option").appendChild(op);
 
         });
-        let select = document.getElementById("city-option");
+        //access first value in options by default
         let [lat, lon] = select.value.split(" ");
         getWeather(lat, lon);
-        console.log("ok");
 
 
+        select.addEventListener("change", () => {
+            let [lat, lon] = select.value.split(" ");
+            getWeather(lat, lon)
+
+        })
     } catch (err) {
         console.log(err);
     }
 }
-let select = document.getElementById("city-option");
-select.addEventListener("change", () => {
-    let [lat, lon] = select.value.split(" ");
-    getWeather(lat, lon)
 
-})
 async function getWeather(lat, lon) {
     let res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m`);
     let data = await res.json();
@@ -44,13 +58,10 @@ async function getWeather(lat, lon) {
 
     let select = document.getElementById("city-option");
     let city = select.options[select.selectedIndex].text;
-    
-    display.className = "weather-display";
-    display.innerHTML = `City: ${city}<br>Temp: ${data.current.temperature_2m}<br>Humidity: ${data.current.relative_humidity_2m}`;
-    document.body.appendChild(display);
-    console.log("Temp:", data.current.temperature_2m);
-    console.log("Humidity:", data.current.relative_humidity_2m);
 
+    display.className = "weather-display";
+    display.innerHTML = `City: ${city}<br>Temp: 🌡️${data.current.temperature_2m}°C <br>Humidity: 💧${data.current.relative_humidity_2m}%`;
+    document.body.appendChild(display);
 }
 
 
