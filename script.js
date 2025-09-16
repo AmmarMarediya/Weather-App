@@ -1,4 +1,5 @@
 let display = document.createElement("div");
+display.className = "weather-display";
 
 document.getElementById("btn").addEventListener("click", () => {
     getcity()
@@ -7,6 +8,8 @@ async function getcity() {
 
     try {
 
+        let select = document.getElementById("city-option");
+        select.innerHTML = "";
         let city = document.getElementById("city-input").value.trim();
         if (!city) {
             display.textContent = "🔴Please enter city⚠️";
@@ -14,13 +17,13 @@ async function getcity() {
 
             return;
         }
+        display.className = "";
         display.textContent = "";
         let op;
         let geores = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}`)
         let geodata = await geores.json();
 
-        let select = document.getElementById("city-option");
-        select.innerHTML = "";
+       
 
         if (!geodata.results || geodata.results.length === 0) {
             select.innerHTML = "<option>🥲City not found⚠️</option>"
@@ -40,7 +43,7 @@ async function getcity() {
         let [lat, lon] = select.value.split(" ");
         getWeather(lat, lon);
 
-
+        
         select.addEventListener("change", () => {
             let [lat, lon] = select.value.split(" ");
             getWeather(lat, lon)
