@@ -70,7 +70,7 @@ input[type="text"]{
     outline: none;
     font-size: 16px;
     width: 50%;
-    background: #f1f1f1;
+    background: #bce3ff;
     
 }
 
@@ -87,9 +87,10 @@ input[type="text"]{
     border-radius: 5px;
     padding: 5px;
     outline: none;
+    background: #bce3ff;
 } 
 
-@media screen and (max-width: 484px){
+@media screen and (max-width: 490px){
     form {
     width: 80%;
 
