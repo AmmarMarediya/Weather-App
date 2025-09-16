@@ -28,7 +28,7 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 12px;
+    border-radius: 10px;
     box-shadow: 5px 5px 10px rgb(52, 52, 52);
     gap: 10px 0;
 }
@@ -91,7 +91,8 @@ input[type="text"]{
 
 @media screen and (max-width: 484px){
     form {
-    width: 200px;
+    width: 80%;
+
 }
 #city-option{
     width: 90%;
@@ -106,5 +107,8 @@ input[type="text"]{
 
 #city-input{
     width: 90%;
+}
+body{
+    justify-content:flex-start;
 }
 }
