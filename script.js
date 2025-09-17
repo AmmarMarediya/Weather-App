@@ -28,10 +28,11 @@ async function getcity() {
        
 
         if (!geodata.results || geodata.results.length === 0) {
-            select.innerHTML = "<option>🥲City Not Found⚠️</option>"
+            select.innerHTML = ""
+            display.textContent = "City Not Found⚠️";
             setTimeout(() => {
                 
-                select.innerHTML = "";
+                display.textContent = "";
             }, 1500);
             return;
 
